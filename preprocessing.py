@@ -3,6 +3,12 @@ import re               # Regular expressions
 import numpy as np      # Arrays for high performance operations
 
 
+
+# Esta función se encarga de tomar los tweets de entrada y clasificarlos en tres corpus:
+# el corpus no troll (corpusNT), el corpus troll (corpusT) y por último el corpus que engloba
+# los corpus previos al que se la llamado "corpustodo".
+#
+
 def load():
     file = sys.argv[1];
     f = open(file, "r")
@@ -20,10 +26,9 @@ def load():
             words = line.split(",")      # Se separan las etiquetas y el contenido del tweet
 
 
-
-            #TODO: ¿Qué hace el strip?
-            ''' El strip es necesario porque estamos comparando
-            troll\n con troll. Por lo tanto hacemos un strip() que devuelve'''
+            # El strip es necesario porque estamos comparando troll\n con troll.
+            # Por lo tanto hacemos un strip() que devuelve las cadenas sin esos
+            # saltos de línea finales.
             if(words[1].strip() == "troll".strip()):
                 corpusT.write(words[0] + "\n")
             else:
