@@ -11,10 +11,12 @@ def probabilityEstimator():
         training_file = open(training_file_, "w+")
 
         vocabulary_size = vocabulary.readline()
+        vocabulary_size = vocabulary_size.replace("Numero de palabras: ",'')
         corpus_size = corpus.readline()
 
         for word in vocabulary:
 
+            word = word.replace("Palabra: ", '')
             word_frequency = 0
 
             corpus = open(corpus_, "r")

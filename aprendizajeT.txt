@@ -1,3 +1,4 @@
+Palabra:            Frec: 6748  LogProb: -4.2664500550601225
 Palabra: !          Frec: 1283  LogProb: -5.925864195553623
 Palabra: !!         Frec: 195   LogProb: -7.805485020573012
 Palabra: !!!        Frec: 120   LogProb: -8.287809134206787

@@ -33,10 +33,10 @@ def createVocabulary():
     # Escribimos en un fichero que hemos llamado vocabulario.txt todas las
     # coincidencias que hemos obtenido previamente.
     fich_vocabulario = open("vocabulario.txt", "w+")
-    fich_vocabulario.write(str(len(vocabulary)))
+    fich_vocabulario.write("Numero de palabras: " + str(len(vocabulary)) + "\n")
     vocabulary = sorted(vocabulary)
     for word in vocabulary:
-        fich_vocabulario.write(word + "\n")
+        fich_vocabulario.write("Palabra: " + word + "\n")
 
     fich_vocabulario.close()
 
