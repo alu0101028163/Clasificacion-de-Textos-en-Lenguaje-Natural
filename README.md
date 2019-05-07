@@ -13,4 +13,10 @@ La estructura de ficheros es:
     ├── corpusT.txt                 # Corpus con los tweets trolls preprocesados.
     ├── corpustodo.txt              # Corpus con todos los tweets preprocesados.
     ├── vocabulario.txt             # Vocabulario de la base de datos sacado a partir de
-                                    # un corpus.
+    ├                               # un corpus.
+    ├── probabilityEstimator.py     # Estima la probabilidad de obtener una palabra de un
+    ├                               # corpus concreto así como su frecuencia.           
+    ├── aprendizajeNT.txt           # Fichero resultante de aplicar probabilityEstimator
+    ├                               # sobre el corpus de los tweets no troll.
+    ├── aprendizajeT.txt            # Fichero resultante de aplicar probabilityEstimator
+    ├                               # sobre el corpus de los tweets troll.
