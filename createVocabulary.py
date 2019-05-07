@@ -3,8 +3,6 @@ import sys
 
 
 # Este programa crea el vocabulario a partir del corpus que se le pase.
-
-
 def createVocabulary():
 
     file = sys.argv[1]
@@ -36,6 +34,7 @@ def createVocabulary():
     # coincidencias que hemos obtenido previamente.
     fich_vocabulario = open("vocabulario.txt", "w+")
     fich_vocabulario.write(str(len(vocabulary)))
+    vocabulary = sorted(vocabulary)
     for word in vocabulary:
         fich_vocabulario.write(word + "\n")
 
