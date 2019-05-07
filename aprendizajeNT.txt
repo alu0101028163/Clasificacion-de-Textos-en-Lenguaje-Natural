@@ -1,3 +1,5 @@
+Numero de documentos del corpus: 3
+Numero de palabras del corpus: 579689
 Palabra:            Frec: 9689  LogProb: -4.122017952775185
 Palabra: !          Frec: 912   LogProb: -6.484131777065028
 Palabra: !!         Frec: 192   LogProb: -8.03817746875511

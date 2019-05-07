@@ -14,6 +14,10 @@ def probabilityEstimator():
         vocabulary_size = vocabulary_size.replace("Numero de palabras: ",'')
         corpus_size = corpus.readline()
 
+        #TODO: No entiendo bien qué hay que poner en esta cabecera.
+        training_file.write("Numero de documentos del corpus: " + str(len(sys.argv) - 1) + "\n")
+        training_file.write("Numero de palabras del corpus: " + str(corpus_size))
+
         for word in vocabulary:
 
             word = word.replace("Palabra: ", '')
