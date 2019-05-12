@@ -21,6 +21,7 @@ def probabilityEstimator():
         for word in vocabulary:
 
             word = word.replace("Palabra: ", '')
+            word = word.strip()
             word_frequency = 0
 
             corpus = open(corpus_, "r")
@@ -30,7 +31,6 @@ def probabilityEstimator():
 
             prob_logarithm = math.log((word_frequency + 1) / (int(corpus_size) + int(vocabulary_size) + 1))
             word_data = "Palabra: " + word.strip().ljust(10) + " Frec: " + str(word_frequency).ljust(5) + " LogProb: " + str(prob_logarithm) + "\n"
-            # word_data = word.strip() + str(word_frequency) + str(prob_logarithm) + "\n"
             training_file.write(word_data)
 
         vocabulary.close()
