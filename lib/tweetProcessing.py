@@ -10,6 +10,20 @@ def processTweet(tweet):
 
     tweet_arr = []
 
+    # if(len(re.findall("\w+", tweet)) > 0):
+    #     coincidences = re.findall("\w+", tweet)
+    #     for i in range(len(coincidences)):
+    #         coincidences[i] = re.sub(r'\s','',coincidences[i])
+    #     tweet_arr += coincidences
+    #     tweet = re.sub(r'\w+','',tweet)
+    #
+    # if(len(re.findall("\W+", tweet)) > 0):
+    #     coincidences = re.findall("\W+", tweet)
+    #     for i in range(len(coincidences)):
+    #         coincidences[i] = re.sub(r'\s','',coincidences[i])
+    #     tweet_arr += coincidences
+    #     tweet = re.sub(r'\W+','',tweet)
+
     # Buscamos por medio del uso de expresiones regulares todas aquellas
     # cadenas que cacen con hastags.
     if(len(re.findall("#\w+", tweet)) > 0):
@@ -18,7 +32,6 @@ def processTweet(tweet):
             coincidences[i] = re.sub(r'\s','',coincidences[i])
         tweet_arr += coincidences
         tweet = re.sub(r'#\w+','',tweet)
-        print(tweet_arr)
 
     # Buscamos por medio del uso de expresiones regulares todas aquellas
     # cadenas que cacen con emoticonos.

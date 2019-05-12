@@ -72,41 +72,50 @@ def classifier():
 
     corpus = open(corpus_, "r")
 
-
+    # for key in learning_set2:
+    #     print(key + " " + str(learning_set2[key]))
+    #
+    # print(" ")
+    # for key in learning_set1:
+    #     print(key + " " + str(learning_set1[key]))
+    #
 
     for tweet in corpus:
 
+        print(" ")
+        print(tweet)
         words = tweetProcessing.processTweet(tweet)
-
-        print(words)
 
         probability_set1 = 1
         for word in words:
             if word in learning_set1:
-                probability_set1 *= learning_set1[word]
+                probability_set1 += learning_set1[word]
                 print(probability_set1)
             else:
                 print("MISSIN WORD: " + word)
 
-        probability_set1 *= math.log( set1_corpus_documents / (set1_corpus_documents + set2_corpus_documents) )
+        probability_set1 += math.log( set1_corpus_documents / (set1_corpus_documents + set2_corpus_documents) )
+        print(probability_set1)
 
+        print("--------------------------------")
         probability_set2 = 1
         for word in words:
             if word in learning_set2:
-                probability_set2 *= learning_set2[word]
+                probability_set2 += learning_set2[word]
+                print(probability_set2)
             else:
                 print("MISSIN WORD: " + word)
 
-        probability_set2 *= math.log( set2_corpus_documents / (set1_corpus_documents + set2_corpus_documents) )
+        probability_set2 += math.log( set2_corpus_documents / (set1_corpus_documents + set2_corpus_documents) )
+        print(probability_set2)
 
         if(probability_set1 > probability_set2):
-            print(probability_set1)
             set1_counter += 1
         else:
             set2_counter += 1
 
     print("SET1: " + str(set1_counter) + " SET2: " + str(set2_counter))
-    print(str(math.log(set2_corpus_documents / (set1_corpus_documents + set2_corpus_documents))))
+    # print(str(math.log(set2_corpus_documents / (set1_corpus_documents + set2_corpus_documents))))
 
     # for tweet in corpus:
     #

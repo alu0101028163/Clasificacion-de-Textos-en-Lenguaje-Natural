@@ -24,8 +24,8 @@ def createVocabulary():
     fich_vocabulario.write("Numero de palabras: " + str(len(vocabulary)) + "\n")
     vocabulary = sorted(vocabulary)
 
-    if "" in vocabulary:
-        vocabulary.remove("") #Eliminamos la cadena vacía.
+    if " " in vocabulary:
+        vocabulary.remove(" ") #Eliminamos la cadena vacía.
 
     for word in vocabulary:
         fich_vocabulario.write("Palabra: " + word + "\n")

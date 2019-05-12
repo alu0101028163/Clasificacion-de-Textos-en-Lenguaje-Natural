@@ -1,6 +1,25 @@
 import math
+import re
 import sys
+import tweetProcessing
 
+
+def create_dict(vocabulary_):
+
+    vocabulary = open(vocabulary_, "r")
+    vocabulary.readline() #Nº documentos del corpus
+
+    dict = {}
+    for tweet in vocabulary:
+        word_regex = re.compile("Palabra:\s[+-]?(.+?)\s")
+        word = word_regex.search(tweet)
+
+        if(word):
+              dict[word.group(1)] = 0
+
+    vocabulary.close()
+
+    return dict
 
 def getCorpusDocuments(corpus_file_name):
 
@@ -31,45 +50,36 @@ def probabilityEstimator():
         vocabulary_ =  "../" + sys.argv[1];
         vocabulary = open(vocabulary_, "r")
         corpus_ = "../" + sys.argv[2];
-        # corpus = open(corpus_, "r")
         training_file_ = "../" + sys.argv[3];
         training_file = open(training_file_, "w+")
 
         vocabulary_size = vocabulary.readline()
         vocabulary_size = vocabulary_size.replace("Numero de palabras: ",'')
+        vocabulary.close()
 
-        # print(getCorpusDocuments(corpus_))
-        # print(getCorpusWords(corpus_))
+
+        vocabulary = create_dict(vocabulary_)
 
         corpus = open(corpus_, "r")
 
         training_file.write("Numero de documentos del corpus: " + str(getCorpusDocuments(corpus_)) + "\n")
         training_file.write("Numero de palabras del corpus: " + str(getCorpusWords(corpus_)) + "\n")
 
+        corpus_size = 0
+        for tweet in corpus:
+            tweet = tweetProcessing.processTweet(tweet)
+            for w in tweet:
+                if w in vocabulary:
+                    vocabulary[w] += 1
+                corpus_size += 1
+
         for word in vocabulary:
-
-            word = word.replace("Palabra: ", '')
-            word = word.strip()
-            word_frequency = 0
-
-            corpus = open(corpus_, "r")
-            corpus_size = 0
-
-            for tweet in corpus:
-                tweet = tweet.split()
-                for w in tweet:
-                    if(w == word):
-                        word_frequency += 1
-                    corpus_size += 1
-
-            # print("CORPUS SIZE: " + str(corpus_size))
-            # print("VOCABULARY SIZE: " + str(vocabulary_size))
-            # print("DIVISION == " + word + " " + str(word_frequency + 1) +  "/" + str(int(corpus_size) + int(vocabulary_size) + 1))
-            prob_logarithm = math.log((word_frequency + 1) / ((int(corpus_size) + int(vocabulary_size) + 1)))
-            word_data = "Palabra: " + word.strip().ljust(10) + " Frec: " + str(word_frequency).ljust(5) + " LogProb: " + str(prob_logarithm) + "\n"
+            # print(str(vocabulary[word] + 1) +  " / " + str(corpus_size) + " + " + str(int(vocabulary_size)) + " + " + "1")
+            prob_logarithm = math.log((vocabulary[word] + 1) / ((int(corpus_size) + int(vocabulary_size) + 1)))
+            word_data = "Palabra: " + word.strip().ljust(10) + " Frec: " + str(vocabulary[word]).ljust(5) + " LogProb: " + str(prob_logarithm) + "\n"
             training_file.write(word_data)
 
-        vocabulary.close()
+
         corpus.close()
         training_file.close()
 
