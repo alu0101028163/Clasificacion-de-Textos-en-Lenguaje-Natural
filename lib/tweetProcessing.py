@@ -4,9 +4,11 @@ import re
 def processTweet(tweet):
 
     tweet = re.sub(r'@\w+','',tweet)      # Se eliminan las menciones
+    tweet = re.sub(r'#\w+','',tweet)      # Se eliminan los hashtag.
     tweet = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+','',tweet) # Se eliminan las URLs
-    tweet = re.sub(r'\"','',tweet)      # Se eliminan las comillas
-    words = tweet.split()
+    tweet = re.sub(r'\"','',tweet)       # Se eliminan las comillas
+    tweet = re.sub(r'(?:\d+[a-z]|[a-z]+\d)[a-z\d]*','',tweet) # Se eliminan todas aquellas strings que contengan numeros.
+    tweet = re.sub(r'[0-9]+','',tweet)   # Se eliminan los numeros
 
     tweet_arr = []
 
@@ -39,6 +41,6 @@ def processTweet(tweet):
 
     return tweet_arr
 
-tweet_arr = processTweet("\"damn work fire wall. can't go to myspace. :(\"")
-for word in tweet_arr:
-    print(word)
+# tweet_arr = processTweet("\"damn work fire wall. can't go to myspace. :(\"")
+# for word in tweet_arr:
+#     print(word)
