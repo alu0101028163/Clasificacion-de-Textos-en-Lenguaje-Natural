@@ -29,16 +29,16 @@ def load():
         if line.strip():
 
             line = re.sub(r'@\w+','',line)      # Se eliminan las menciones
-            line = re.sub(r'#\w+','',line)      # Se eliminan los hashtag.
+            # line = re.sub(r'#\w+','',line)      # Se eliminan los hashtag.
             line = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+','',line) # Se eliminan las URLs
             line = re.sub(r'\"','',line)       # Se eliminan las comillas
-            line = re.sub(r'(?:\d+[a-z]|[a-z]+\d)[a-z\d]*','',line) # Se eliminan todas aquellas strings que contengan numeros.
-            line = re.sub(r'[0-9]+','',line)   # Se eliminan los numeros
+            # line = re.sub(r'(?:\d+[a-z]|[a-z]+\d)[a-z\d]*','',line) # Se eliminan todas aquellas strings que contengan numeros.
+            # line = re.sub(r'[0-9]+','',line)   # Se eliminan los numeros
             words = line.split(",")            # Se separan las etiquetas y el contenido del tweet
 
             # Se pasan todas las palabras a minusculas.
-            for i in range(len(words)):
-                words[i] = words[i].lower()
+            # for i in range(len(words)):
+            #     words[i] = words[i].lower()
 
 
             # El strip es necesario porque estamos comparando troll\n con troll.
