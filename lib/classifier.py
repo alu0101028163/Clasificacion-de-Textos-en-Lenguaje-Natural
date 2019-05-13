@@ -11,8 +11,8 @@ def create_dict(learning_file_):
 
     dict = {}
     for tweet in learning_file:
-        word_regex = re.compile("Palabra:\s[+-]?(.+?)\s")
-        prob_regex = re.compile("LogProb:\s([+-]?(\d+).?(\d+))")
+        word_regex = re.compile("Palabra:[+-]?(.+?)\s")
+        prob_regex = re.compile("LogProb:([+-]?(\d+).?(\d+))")
         word = word_regex.search(tweet)
         prob = prob_regex.search(tweet)
 
@@ -35,8 +35,8 @@ def get_sizes(learning_file_):
     corpus_words = learning_file.readline()
     corpus_words = corpus_words.strip()
 
-    corpus_documents = corpus_documents.replace("Numero de documentos del corpus: ", '')
-    corpus_words = corpus_words.replace("Numero de palabras del corpus: ", '')
+    corpus_documents = corpus_documents.replace("Numero de documentos del corpus:", '')
+    corpus_words = corpus_words.replace("Numero de palabras del corpus:", '')
 
     learning_file.close()
 
@@ -54,9 +54,9 @@ def classifier():
     # learning_file2_ = "../" + sys.argv[3];
 
     learning_file1_ = "../aprendizajeT.txt";
-    learning_file2_ = "../aprendizajeNT.txt";
+    learning_file2_ = "../aprendizajenT.txt";
 
-    classification_file = "../clasificacion.txt"
+    classification_file = "../" + sys.argv[2];
     classification = open(classification_file,'w+')
 
     learning_set1 = create_dict(learning_file1_)

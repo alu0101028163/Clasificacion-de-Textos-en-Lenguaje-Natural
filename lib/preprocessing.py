@@ -13,9 +13,9 @@ def load():
     file = "../" + sys.argv[1];
     f = open(file, "r")
     corpusT = open("../corpusT.txt","w+")
-    corpusNT = open("../corpusNT.txt","w+")
+    corpusNT = open("../corpusnT.txt","w+")
     corpusTODO = open("../corpustodo.txt", "w+")
-    corpustodo_clasificacion = open("../corpustodo_clasificacion.txt",'w+')
+    # corpustodo_clasificacion = open("../corpustodo_clasificacion.txt",'w+')
 
 
     corpusT_n_tokens = 0
@@ -40,10 +40,10 @@ def load():
             # saltos de línea finales.
             if(words[1].strip() == "troll".strip()):
                 corpusT_arr.append(words[0] + "\n")
-                corpustodo_clasificacion.write("T\n")
+                # corpustodo_clasificacion.write("T\n")
             else:
                 corpusNT_arr.append(words[0] + "\n")
-                corpustodo_clasificacion.write("nT\n")
+                # corpustodo_clasificacion.write("nT\n")
 
             corpusTODO_arr.append(words[0] + "\n")
 
@@ -62,7 +62,7 @@ def load():
     corpusT.close()
     corpusNT.close()
     corpusTODO.close()
-    corpustodo_clasificacion.close()
+    # corpustodo_clasificacion.close()
 
 
 load()

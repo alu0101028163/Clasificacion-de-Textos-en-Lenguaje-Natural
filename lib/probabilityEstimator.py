@@ -11,7 +11,7 @@ def create_dict(vocabulary_):
 
     dict = {}
     for tweet in vocabulary:
-        word_regex = re.compile("Palabra:\s[+-]?(.+?)\s")
+        word_regex = re.compile("Palabra:[+-]?(.+?)\s")
         word = word_regex.search(tweet)
 
         if(word):
@@ -54,7 +54,7 @@ def probabilityEstimator():
         training_file = open(training_file_, "w+")
 
         vocabulary_size = vocabulary.readline()
-        vocabulary_size = vocabulary_size.replace("Numero de palabras: ",'')
+        vocabulary_size = vocabulary_size.replace("Numero de palabras:",'')
         vocabulary.close()
 
 
@@ -62,8 +62,8 @@ def probabilityEstimator():
 
         corpus = open(corpus_, "r")
 
-        training_file.write("Numero de documentos del corpus: " + str(getCorpusDocuments(corpus_)) + "\n")
-        training_file.write("Numero de palabras del corpus: " + str(getCorpusWords(corpus_)) + "\n")
+        training_file.write("Numero de documentos del corpus:" + str(getCorpusDocuments(corpus_)) + "\n")
+        training_file.write("Numero de palabras del corpus:" + str(getCorpusWords(corpus_)) + "\n")
 
         corpus_size = 0
         for tweet in corpus:
@@ -77,12 +77,12 @@ def probabilityEstimator():
             if vocabulary[word] != 0:
                 # print(str(vocabulary[word] + 1) +  " / " + str(corpus_size) + " + " + str(int(vocabulary_size)) + " + " + "1")
                 prob_logarithm = math.log((vocabulary[word] + 1) / ((int(corpus_size) + int(vocabulary_size) + 1)))
-                word_data = "Palabra: " + word.strip().ljust(10) + " Frec: " + str(vocabulary[word]).ljust(5) + " LogProb: " + str(prob_logarithm) + "\n"
+                word_data = "Palabra:" + word.strip() + " Frec:" + str(vocabulary[word]) + " LogProb:" + str(prob_logarithm) + "\n"
                 training_file.write(word_data)
 
         vocabulary['UNK'] = 0
         prob_logarithm = math.log((vocabulary['UNK'] + 1) / ((int(corpus_size) + int(vocabulary_size) + 1)))
-        word_data = "Palabra: " + 'UNK'.ljust(10) + " Frec: " + str(vocabulary['UNK']).ljust(5) + " LogProb: " + str(prob_logarithm) + "\n"
+        word_data = "Palabra:" + 'UNK' + " Frec:" + str(vocabulary['UNK']) + " LogProb:" + str(prob_logarithm) + "\n"
         training_file.write(word_data)
 
         corpus.close()
