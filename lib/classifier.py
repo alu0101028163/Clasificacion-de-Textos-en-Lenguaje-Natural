@@ -50,8 +50,11 @@ def classifier():
     corpus_ = "../" + sys.argv[1];
     corpus = open(corpus_, "r")
 
-    learning_file1_ = "../" + sys.argv[2];
-    learning_file2_ = "../" + sys.argv[3];
+    # learning_file1_ = "../" + sys.argv[2];
+    # learning_file2_ = "../" + sys.argv[3];
+
+    learning_file1_ = "../aprendizajeT.txt";
+    learning_file2_ = "../aprendizajeNT.txt";
 
     classification_file = "../clasificacion.txt"
     classification = open(classification_file,'w+')
@@ -105,7 +108,7 @@ def classifier():
             set2_counter += 1
             classification.write("nT\n")
 
-    print(sys.argv[2] + " : " + str(set1_counter) + " " + sys.argv[3] + " : " + str(set2_counter))
+    print("Troll : " + str(set1_counter) + " No Troll: " + str(set2_counter))
 
 
     corpus.close()
