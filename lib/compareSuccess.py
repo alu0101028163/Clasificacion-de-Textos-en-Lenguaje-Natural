@@ -2,8 +2,12 @@ import sys
 
 
 def compareSuccess():
-    corpus_obj = open("../corpustodo_clasificacion.txt","r")
-    corpus_clas = open("../clasificacion.txt", "r")
+
+    corpus_obj_file = "../" + sys.argv[1]
+    corpus_clas_file = "../" + sys.argv[2]
+
+    corpus_obj = open(corpus_obj_file,"r")
+    corpus_clas = open(corpus_clas_file, "r")
 
 
     obj = []
