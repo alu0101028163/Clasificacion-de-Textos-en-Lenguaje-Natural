@@ -74,11 +74,16 @@ def probabilityEstimator():
                 corpus_size += 1
 
         for word in vocabulary:
-            # print(str(vocabulary[word] + 1) +  " / " + str(corpus_size) + " + " + str(int(vocabulary_size)) + " + " + "1")
-            prob_logarithm = math.log((vocabulary[word] + 1) / ((int(corpus_size) + int(vocabulary_size) + 1)))
-            word_data = "Palabra: " + word.strip().ljust(10) + " Frec: " + str(vocabulary[word]).ljust(5) + " LogProb: " + str(prob_logarithm) + "\n"
-            training_file.write(word_data)
+            if vocabulary[word] != 0:
+                # print(str(vocabulary[word] + 1) +  " / " + str(corpus_size) + " + " + str(int(vocabulary_size)) + " + " + "1")
+                prob_logarithm = math.log((vocabulary[word] + 1) / ((int(corpus_size) + int(vocabulary_size) + 1)))
+                word_data = "Palabra: " + word.strip().ljust(10) + " Frec: " + str(vocabulary[word]).ljust(5) + " LogProb: " + str(prob_logarithm) + "\n"
+                training_file.write(word_data)
 
+        vocabulary['UNK'] = 0
+        prob_logarithm = math.log((vocabulary['UNK'] + 1) / ((int(corpus_size) + int(vocabulary_size) + 1)))
+        word_data = "Palabra: " + 'UNK'.ljust(10) + " Frec: " + str(vocabulary['UNK']).ljust(5) + " LogProb: " + str(prob_logarithm) + "\n"
+        training_file.write(word_data)
 
         corpus.close()
         training_file.close()
