@@ -53,6 +53,9 @@ def classifier():
     learning_file1_ = "../" + sys.argv[2];
     learning_file2_ = "../" + sys.argv[3];
 
+    classification_file = "../clasificacion.txt"
+    classification = open(classification_file,'w+')
+
     learning_set1 = create_dict(learning_file1_)
     learning_set2 = create_dict(learning_file2_)
 
@@ -97,8 +100,10 @@ def classifier():
 
         if(probability_set1 > probability_set2):
             set1_counter += 1
+            classification.write("T\n")
         else:
             set2_counter += 1
+            classification.write("nT\n")
 
     print(sys.argv[2] + " : " + str(set1_counter) + " " + sys.argv[3] + " : " + str(set2_counter))
 
@@ -106,5 +111,6 @@ def classifier():
     corpus.close()
     learning_file1.close()
     learning_file2.close()
+    classification.close()
 
 classifier()
