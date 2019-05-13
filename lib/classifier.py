@@ -81,7 +81,7 @@ def classifier():
             if word in learning_set1:
                 probability_set1 += learning_set1[word]
             else:
-                print("MISSIN WORD: " + word)
+                probability_set1 += learning_set1['UNK']
 
         probability_set1 += math.log( set1_corpus_documents / (set1_corpus_documents + set2_corpus_documents) )
 
@@ -90,7 +90,7 @@ def classifier():
             if word in learning_set2:
                 probability_set2 += learning_set2[word]
             else:
-                print("MISSIN WORD: " + word)
+                probability_set2 += learning_set2['UNK']
 
         probability_set2 += math.log( set2_corpus_documents / (set1_corpus_documents + set2_corpus_documents) )
 
